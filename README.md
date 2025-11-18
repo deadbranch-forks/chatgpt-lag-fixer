@@ -28,6 +28,33 @@ ChatGPT Lag Fixer is a Chrome extension that uses intelligent virtual scrolling 
 - **MutationObserver integration**: Automatically detects new messages
 - **Debug mode**: Developer-friendly logging for troubleshooting
 
+
+## Installation
+
+### **Option 1 — Install from the Chrome Web Store (recommended)**  
+*(Link will be added once the extension is published)*  
+
+### **Option 2 — Install Manually (Unpacked Extension)**
+
+If you want to run the extension locally or modify the code:
+
+1. Download or clone this repository
+   ```bash
+   git clone https://github.com/bramgiessen/chatgpt-lag-fixer.git
+   ```
+2. Open Chrome and navigate to:
+    ```bash
+   chrome://extensions
+   ```
+3. Enable Developer mode (toggle in the top-right corner)
+4. Click Load unpacked
+5. Select the project folder (the one containing manifest.json)
+6. Open ChatGPT — the extension will load automatically
+7. Use the extension icon in Chrome to open the settings popup
+
+You're now running ChatGPT Lag Fixer locally, and you can make changes in the code!
+
+
 ## Technical Architecture
 
 ### How It Works
