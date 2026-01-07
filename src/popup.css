@@ -173,3 +173,152 @@ input:checked + .slider:before {
 .footer span {
   color: #e74c3c;
 }
+
+@keyframes gradient-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Support / Donation Card */
+.support-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  /* Gold/Beer animated gradient */
+  background: linear-gradient(-45deg, #f1c40f, #f39c12, #e67e22, #f1c40f);
+  background-size: 300% 300%;
+  animation: gradient-flow 4s ease infinite;
+  /* Faster flow for energy */
+
+  border-radius: 12px;
+  padding: 12px 14px;
+  /* Slightly more padding */
+  margin-top: 10px;
+  text-decoration: none;
+  color: white;
+  /* Deep, floating shadow + inset highland for 3D feel */
+  box-shadow: 0 8px 20px rgba(243, 156, 18, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: 1px solid rgba(243, 156, 18, 0.2);
+  /* Blend border */
+  cursor: pointer;
+  position: relative;
+  /* For z-index if needed */
+  z-index: 1;
+  overflow: hidden;
+  /* Added to clip hearts */
+}
+
+@keyframes floatHeart {
+  0% {
+    transform: translateY(20px) translateX(0) scale(0.6);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0.8;
+    transform: translateY(0) translateX(-4px) scale(0.8);
+  }
+
+  50% {
+    transform: translateY(-20px) translateX(4px) scale(1);
+  }
+
+  80% {
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: translateY(-50px) translateX(-2px) scale(1.1);
+    opacity: 0;
+  }
+}
+
+.heart-float {
+  position: absolute;
+  bottom: -15px;
+  /* Left/Size/Duration set by JS */
+  pointer-events: none;
+  animation: floatHeart 3s ease-in-out forwards;
+  opacity: 0;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  z-index: 0;
+  /* Behind contents */
+}
+
+/* Ensure contents stay above hearts */
+.support-icon,
+.support-text,
+.support-arrow {
+  position: relative;
+  z-index: 2;
+}
+
+.support-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  /* Higher float */
+  /* Stronger, more diffuse shadow for "lifted" look */
+  box-shadow: 0 16px 32px rgba(243, 156, 18, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  filter: brightness(1.08);
+  /* More glow */
+  z-index: 10;
+}
+
+.support-card:active {
+  transform: translateY(1px) scale(0.98);
+  /* Click press effect */
+}
+
+.support-icon {
+  font-size: 22px;
+  background: rgba(255, 255, 255, 0.25);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  backdrop-filter: blur(4px);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.support-text {
+  flex: 1;
+}
+
+.support-title {
+  font-size: 15px;
+  /* Bigger text */
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  margin-bottom: 2px;
+}
+
+.support-desc {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.support-arrow {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.2s;
+}
+
+.support-card:hover .support-arrow {
+  color: white;
+  transform: translateX(4px);
+}

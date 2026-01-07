@@ -29,28 +29,54 @@
     // Little icon + text
     badge.innerHTML = `<span style="margin-right:4px">⚡</span><span>Lag Fixer active</span>`;
 
-    Object.assign(badge.style, {
+    const inputEl = document.querySelector("#prompt-textarea");
+    let targetEl = inputEl;
+    
+    if (inputEl) {
+       const wrapper = inputEl.closest('[class*="bg-token-bg-primary"]') || inputEl.closest('form');
+       if (wrapper) targetEl = wrapper;
+    }
+
+    let posStyles = {
       position: "fixed",
-      right: "50px",
-      bottom: "50px", // roughly above the input bar
+      left: "20px",
+      bottom: "150px"
+    };
+
+    if (targetEl) {
+      const rect = targetEl.getBoundingClientRect();
+      let bottomVal = window.innerHeight - rect.top + 10;
+
+      // If Donation Badge is already visible, stack on top
+      if (scroller.DonationBadge && scroller.DonationBadge.isVisible) {
+          bottomVal = 180;
+      }
+
+      posStyles = {
+        position: "fixed",
+        left: `${rect.left}px`,
+        bottom: `${bottomVal}px`, 
+        top: "auto",
+        right: "auto"
+      };
+    }
+
+    Object.assign(badge.style, {
+      ...posStyles,
       zIndex: "9999",
       display: "inline-flex",
       alignItems: "center",
       justifyContent: "center",
       gap: "4px",
-
-      // Fancy pill look
       padding: "5px 12px",
       borderRadius: "999px",
       fontSize: "16px",
       fontWeight: "500",
       color: "#ffffff",
-      background:
-        "linear-gradient(135deg, rgba(108,92,231,0.92), rgba(142,68,173,0.96))",
+      background: "linear-gradient(135deg, #5c9fe7, #44a1ad)",
       boxShadow: "0 6px 18px rgba(15, 23, 42, 0.35)",
       backdropFilter: "blur(8px)",
       WebkitBackdropFilter: "blur(8px)",
-
       pointerEvents: "none",
       opacity: "0",
       transform: "translateY(6px) scale(0.98)",
@@ -60,17 +86,23 @@
 
     document.body.appendChild(badge);
 
-    // Fade in on the next frame
     requestAnimationFrame(() => {
       badge.style.opacity = "1";
       badge.style.transform = "translateY(0) scale(1)";
     });
 
-    // After 2 seconds, fade out and remove
+    // Trigger Donation Nudge immediately (it handles its own logic/visibility checks)
+    if (scroller.DonationBadge) {
+      setTimeout(() => scroller.DonationBadge.show(), 100); 
+    }
+
+    // After 5 seconds, fade out and remove
     setTimeout(() => {
       badge.style.opacity = "0";
       badge.style.transform = "translateY(6px) scale(0.98)";
-      setTimeout(() => badge.remove(), 250);
+      setTimeout(() => {
+        if (badge.isConnected) badge.remove();
+      }, 250);
     }, 5000);
   }
 
@@ -251,6 +283,11 @@
 
     state.stats.totalMessages = total;
     state.stats.renderedMessages = rendered;
+
+    // Check for new messages to trigger Nudge
+    if (scroller.DonationBadge) {
+       scroller.DonationBadge.onStatsUpdate(total);
+    }
   }
 
   function virtualizeNow() {
@@ -449,6 +486,7 @@
     state.articleMap.clear();
     state.nextVirtualId = 1;
 
+    if (scroller.DonationBadge) scroller.DonationBadge.reset();
     hasShownBadgeForCurrentChat = false;
 
     document

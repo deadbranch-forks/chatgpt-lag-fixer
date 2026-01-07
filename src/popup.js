@@ -88,4 +88,41 @@ function updateStatsUI() {
 }
 
   updateStatsUI();
+
+  // -------------------------------------------------------------------------
+  // Heart Animation Logic
+  // -------------------------------------------------------------------------
+  function initHeartAnimation() {
+    const card = document.querySelector(".support-card");
+    if (!card) return;
+
+    function spawnHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart-float");
+      heart.textContent = "❤️";
+
+      // Random properties for organic feel
+      const randomLeft = Math.floor(Math.random() * 80) + 10; // 10% to 90%
+      const randomDuration = Math.random() * 1.5 + 2; // 2s to 3.5s
+      const randomSize = Math.floor(Math.random() * 8) + 10; // 10px to 18px
+
+      heart.style.left = `${randomLeft}%`;
+      heart.style.fontSize = `${randomSize}px`;
+      heart.style.animationDuration = `${randomDuration}s`;
+
+      card.appendChild(heart);
+
+      // Cleanup
+      setTimeout(() => {
+        heart.remove();
+      }, randomDuration * 1000);
+    }
+
+    // Spawn hearts regularly
+    setInterval(spawnHeart, 1200);
+    // Spawn one immediately
+    spawnHeart();
+  }
+
+  initHeartAnimation();
 });
