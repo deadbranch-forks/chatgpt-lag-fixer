@@ -1,3 +1,5 @@
+# Technical Analysis
+
 This a Manifest V3 browser extension (Chrome + Firefox variants) that injects a content-script “shim” into ChatGPT pages and implements DOM-level list virtualization (“windowing”) for the conversation transcript. 
 
 The intent is to keep the rendered DOM shallow and cheap even when the underlying chat history is huge, because ChatGPT’s UI (deep nested nodes per message) can drive style recalculation, layout, paint, and main‑thread GC pressure into pathological territory as message count grows.
