@@ -32,6 +32,10 @@
   - Manual testing notes (browser + steps).
   - Screenshots for UI changes (popup or visual adjustments).
 
+## Coding constraints
+- Do not introduce frameworks or new dependencies.
+- Use existing scroller.config, scroller.state, and scroller.log patterns.
+
 ## Security & Configuration Tips
 - Do not add remote code execution or external analytics.
 - Respect minimal permissions in manifests and keep changes scoped to ChatGPT domains only.
