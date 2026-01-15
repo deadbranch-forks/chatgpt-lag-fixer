@@ -35,3 +35,12 @@
 ## Security & Configuration Tips
 - Do not add remote code execution or external analytics.
 - Respect minimal permissions in manifests and keep changes scoped to ChatGPT domains only.
+
+
+## Developer Documentation
+### Inifiniate Scroll
+Developers and agents should make use of and make reference to the following MSDN documentation items where necessicary:
+
+- [dev-docs/2.2-the-IntersectionObserver-interface.md](dev-docs/2.2-the-IntersectionObserver-interface.md)
+- [dev-docs/2.3-the-IntersectionObserverEntry-interface.md](dev-docs/2.3-the-IntersectionObserverEntry-interface.md)
+- [dev-docs/2.4-the-intersectionObserverInit-dictionary.md](dev-docs/2.4-the-intersectionObserverInit-dictionary.md)
