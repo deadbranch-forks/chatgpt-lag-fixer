@@ -42,6 +42,11 @@
 
 
 ## Developer Documentation
+### Technical Analysis
+A comprehensive overview the extension is evailable for agents. It details the extension's architecture, functionality, and the rationale behind its design choices. I hope that you find it useful.
+
+- [dev-docs/TECHNICAL_README.md](dev-docs/TECHNICAL_README.md)
+
 ### Inifiniate Scroll
 Developers and agents should make use of and make reference to the following MSDN documentation items where necessicary:
 
