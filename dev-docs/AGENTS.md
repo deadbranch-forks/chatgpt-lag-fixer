@@ -1,1 +1,1 @@
-The assistant must ingest the document [TECHNICAL_README.md](TECHNICAL_README.md) in this directory.
+The assistant must ingest the document [TECHNICAL-README.md](TECHNICAL-README.md) in this directory.
